@@ -1,3 +1,4 @@
+ // By the reducer, we are actually updating the state of the application (or the store)
  const initialState = {
     products: [
         //creating initial object in the state
@@ -18,7 +19,7 @@ export const productReducer = (state = initialState, action) => {
 export const selectedProductReducer = (state = {}, action) => {
     switch (action.type) {
         case "SELECTED_PRODUCT":
-            return { ...state, ...action.payload };
+            return { ...state, ...action.payload }; // copying the state and updating the payload by using spread operator
         default:
             return state;
     }
