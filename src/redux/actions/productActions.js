@@ -13,4 +13,10 @@ const selectedProduct = (product) => { // to display the product that got select
     };
 }
 
-export { setProducts, selectedProduct }; // exporting the functions to be used in the reducers
+const removeSelectedProduct = () => { // to display the product that got selected
+    return {
+        type: ActionTypes.REMOVE_SELECTED_PRODUCT,
+    };
+}
+
+export { setProducts, selectedProduct, removeSelectedProduct }; // exporting the functions to be used in the reducers

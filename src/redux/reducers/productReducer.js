@@ -20,6 +20,8 @@ export const selectedProductReducer = (state = {}, action) => {
     switch (action.type) {
         case "SELECTED_PRODUCT":
             return { ...state, ...action.payload }; // copying the state and updating the payload by using spread operator
+        case "REMOVE_SELECTED_PRODUCT":
+            return {}; // we are returning empty object and not the previous state because we want to remove the selected product
         default:
             return state;
     }

@@ -1,7 +1,9 @@
 import react, { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { selectedProduct } from "../redux/actions/productActions";
+
+// we need to dispath the removeSelectedProduct action whenever we are destroyin the component or let's say dispatching the listing page
+import { selectedProduct, removeSelectedProduct } from "../redux/actions/productActions";
 //to get the parameter value from the url, we use the useParams hook from react-router-dom
 import { useParams } from "react-router-dom";
 
@@ -21,7 +23,11 @@ const ProductDetails = () => {
         dispatch(selectedProduct(response.data));
     }
     useEffect(() => {
-        if (productId && productId!="") getData() }, [productId]);
+        if (productId && productId!="") getData();
+    return () => {
+        dispatch(removeSelectedProduct()); // here we are dispatching the removeSelectedProduct action
+        // means we are doing the cleanup when we move away from the page or RETURNING BACK TO THE LISTING PAGE
+    } }, [productId]);
     return (
         <div className="ui grid container">
             {Object.keys(product).length === 0 ? (<div>...Loading</div>) : (
