@@ -2,7 +2,7 @@ import react, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ProductComponent from "./ProductComponent";
 import axios from "axios";
-import { setProducts } from "../redux/actions/productActions";
+import { fetchProducts, setProducts } from "../redux/actions/productActions";
 
 const ProductListing = () => {
     let dispatch = useDispatch();
@@ -10,14 +10,14 @@ const ProductListing = () => {
     // console.log(products);
     //Now usually, for displaying the products, we would have passed the products as props to the ProductComponent
     //But since we are using redux, we can directly access the products from the redux store anywhere in the whole application
-    const fetchProducts = async () => {
-        const response = await axios.get("https://fakestoreapi.com/products").catch((err) => {
-            console.log("Err: ", err);
-        });
-        // console.log("Response is:", response);
-        dispatch(setProducts(response.data));
-    }
-    useEffect(()=>{fetchProducts()}, []);
+    // const fetchProducts = async () => {
+    //     const response = await axios.get("https://fakestoreapi.com/products").catch((err) => {
+    //         console.log("Err: ", err);
+    //     });
+    //     // console.log("Response is:", response);
+    //     dispatch(setProducts(response.data));
+    // }
+    useEffect(()=>{dispatch(fetchProducts())}, []);
     console.log("Products: ", products);
     
     return (

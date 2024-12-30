@@ -11,6 +11,8 @@ export const productReducer = (state = initialState, action) => {
             // this is the way of returning the state, ...state is used to make the copy of the state and 
             // then we are updating the products
             return { ...state, products: action.payload };
+        case "FETCH_PRODUCTS":
+            return { ...state, products: action.payload };
         default:
             return state;
     }
